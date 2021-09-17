@@ -31,16 +31,16 @@ RUN curl -L -o /tmp/ora2pg.zip https://github.com/darold/ora2pg/archive/v$ORA2PG
 ADD /assets /assets
 
 # Instal Oracle Client
-RUN mkdir /usr/lib/oracle/12.2/client64/network/admin -p
+RUN mkdir /usr/lib/oracle/10.2.0.5/client64/network/admin -p
 
-RUN alien -i /assets/oracle-instantclient12.2-basic-12.2.0.1.0-1.x86_64.rpm &&\
-    alien -i /assets/oracle-instantclient12.2-devel-12.2.0.1.0-1.x86_64.rpm &&\
-    alien -i /assets/oracle-instantclient12.2-sqlplus-12.2.0.1.0-1.x86_64.rpm
+RUN alien -i /assets/oracle-instantclient-basic-10.2.0.5-1.x86_64.rpm &&\
+    alien -i /assets/oracle-instantclient-devel-10.2.0.5-1.x86_64.rpm &&\
+    alien -i /assets/oracle-instantclient-sqlplus-10.2.0.5-1.x86_64.rpm
 
-ENV ORACLE_HOME=/usr/lib/oracle/12.2/client64
-ENV TNS_ADMIN=/usr/lib/oracle/12.2/client64/network/admin
-ENV LD_LIBRARY_PATH=/usr/lib/oracle/12.2/client64/lib
-ENV PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/oracle/12.2/client64/bin
+ENV ORACLE_HOME=/usr/lib/oracle/10.2.0.5/client64
+ENV TNS_ADMIN=/usr/lib/oracle/10.2.0.5/client64/network/admin
+ENV LD_LIBRARY_PATH=/usr/lib/oracle/10.2.0.5/client64/lib
+ENV PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/oracle/10.2.0.5/client64/bin
 
 # Install DBI module with Postgres, Oracle and Compress::Zlib module
 RUN perl -MCPAN -e 'install DBI' &&\
